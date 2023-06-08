@@ -73,6 +73,14 @@ namespace HighwayAttica
         /// </summary>
         public void exit() 
         {
+            for (int i = Vehicles.Count - 1; i >= 0; i--)
+            {
+                if (Vehicles[i].ReadyToExitFromSegment)
+                {
+                    Vehicles.RemoveAt(i);
+                }
+            }
+
         }
 
         /// <summary>
