@@ -9,6 +9,7 @@ namespace HighwayAttica
 {
     internal class Junction
     {
+        List<Junction> junctions { get; set; }
         public int VehiclesWaitingForEntry { get; set; }
         public int JunctionId { get; set; }
         public int ElectronicTolls { get; set; }
@@ -19,13 +20,14 @@ namespace HighwayAttica
         // Create new toll here?
 
         ///Junction constructor///
-        public Junction(int junctionId, int electronicTolls, int physicalTolls, int k) 
+        public Junction(int junctionId, int electronicTolls, int physicalTolls, int k, List<Junction> Junctions) 
         {
             this.K = k;
             JunctionId = junctionId;
             ElectronicTolls = electronicTolls;
             PhysicalTolls = physicalTolls;
             JunctionCap = (electronicTolls * 2 * K) + (physicalTolls * K);
+            junctions = Junctions;
             //Cars = new List<Car>();
         }
 

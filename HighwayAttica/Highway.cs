@@ -35,8 +35,8 @@ namespace HighwayAttica
         {
             foreach (Segment seg in Segments)
             {
-                seg.pass();
-                seg.exit();
+                //seg.pass();
+                //seg.exit();
                 seg.enter();
 
             }
