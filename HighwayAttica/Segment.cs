@@ -65,14 +65,18 @@ namespace HighwayAttica
         /// <summary>
         ///Enter vehicles in segment when possible
         /// </summary>
-        public void enter() 
-        { 
-            foreach(Junction jun in junctions)
+        public void enter(List<Vehicle> vehicles)
+        {
+            foreach (Junction jun in junctions)
             {
-                Console.WriteLine(jun.VehiclesWaitingForEntry);
-                
-
-
+                int createVeh = jun.VehiclesWaitingForEntry;
+                for (int i = 0; i < createVeh; i++)
+                {
+                    var lastVehId = vehicles.Last().Id;
+                    var lastJuncId = jun.JunctionId - 1;
+                    Vehicle veh = new Vehicle(lastVehId + 1, lastJuncId, lastJuncId + 1, false);
+                    vehicles.Add(veh);
+                }
             }
         }
 

@@ -37,7 +37,7 @@ namespace HighwayAttica
             {
                 //seg.pass();
                 //seg.exit();
-                seg.enter();
+                //seg.enter();
 
             }
             Console.WriteLine("Vehicles in attica are{0} :", TotalVehiclesInHighway);

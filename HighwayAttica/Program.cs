@@ -56,7 +56,7 @@ namespace HighwayAttica
             }
 
             // Highway initialization
-            Highway attica = new Highway(Nsegs, segments);
+            Highway attica = new Highway(Nsegs, vehicles, segments, junctions);
 
             // Adding the amount of vehicles in the highway
            //@@@@@@@@@@@@@@@@@@@@@ Logging
@@ -92,7 +92,7 @@ namespace HighwayAttica
             {
                 /*                seg.exit(vehicles);
                                 seg.pass(vehicles);*/
-                seg.enter();
+                seg.enter(vehicles);
                 break;
             }
 
