@@ -11,16 +11,20 @@ namespace HighwayAttica
     {
         public int JunctionId { get; set; }
         public int ElectronicTolls { get; set; }
+        int K;
         public int PhysicalTolls { get; set; }
+        public int JunctionCap;
         //public List<Car> Cars { get; set; }
         // Create new toll here?
 
         ///Junction constructor///
-        public Junction(int junctionId, int electronicTolls, int physicalTolls) 
+        public Junction(int junctionId, int electronicTolls, int physicalTolls, int k) 
         {
+            this.K = k;
             JunctionId = junctionId;
             ElectronicTolls = electronicTolls;
             PhysicalTolls = physicalTolls;
+            JunctionCap = (electronicTolls * 2 * K) + (physicalTolls * K);
             //Cars = new List<Car>();
         }
 

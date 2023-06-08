@@ -18,6 +18,9 @@ namespace HighwayAttica
             int K = int.Parse(args[2]);
             int Percent = int.Parse(args[3]);
 
+
+            Highway attica = new Highway(Nsegs);
+
             List<Segment> segments = new List<Segment>();
 
             for (int i = 0; i < Nsegs; i++)
@@ -29,31 +32,101 @@ namespace HighwayAttica
             }
 
             List<Vehicle> vehicles = new List<Vehicle>();
+            List<Junction> junctions = new List<Junction>();
+
+            Random elRan = new Random();
+            Random phRan = new Random();
+            Random random = new Random();
+
             foreach (Segment seg in segments)
             {
-                Random addVeh = new Random();
-                int numberOfVehicles = 0;
-                while (seg.SegmentCapacity >= numberOfVehicles)
+
+                Junction jun = new Junction(seg.SegmentId+1, elRan.Next(1,4), phRan.Next(1,4), K );
+                junctions.Add(jun);
+
+
+                
+                int randomSegmentCapacity = random.Next(1, seg.SegmentCapacity);
+                int numberOfVehicles = randomSegmentCapacity;
+
+                while (numberOfVehicles >= 0)
                 {
                     Vehicle veh = new Vehicle(seg.SegmentId, -1, false);
                     vehicles.Add(veh);
-
-                    numberOfVehicles++;
-                }
-
-            foreach (Vehicle veh in vehicles)
-                {
-                    Console.WriteLine("Vehicle segmentid is {0} , junc is {1}, rte is {2}", veh.SegmentIsInId, veh.JunctionExitId, veh.ReadyToExitFromSegment);
-                    break;
-                }
+                    seg.TotalVehiclesInSegment++;
+                    numberOfVehicles--;
                     
-             /*   Console.WriteLine("Seg id is: {0}", seg.SegmentId);
-                Console.WriteLine("Seg prev is: {0}", seg.NextSegment);
-                Console.WriteLine("Seg next is: {0}", seg.PrevSegment);
-                Console.WriteLine("Seg N is: {0}", seg.N);*/
+                }
             }
 
+
+
+
+
+
             Console.ReadLine();
+
+
+
+
+
+
+
+            ///                  Logs beyond             ///
+            ///                  
+
+
+            /*            foreach (Junction jun in junctions)
+            {
+                Console.WriteLine("Junction id: {0}, Electronic tolls: {1}, Physical tolls: {2}, junc capacity {3}", jun.JunctionId, jun.ElectronicTolls, jun.PhysicalTolls, jun.JunctionCap);
+            }
+
+            foreach (Vehicle veh in vehicles)
+            {
+                Console.WriteLine("Vehicle segmentid is {0}, junc is {1}, rte is {2}", veh.SegmentIsInId, veh.JunctionExitId, veh.ReadyToExitFromSegment);
+            }
+
+            foreach (Segment seg in segments)
+            {
+                Console.WriteLine("Segment id: {0}, Capacity: {1}, Total Vehicles: {2}", seg.SegmentId, seg.SegmentCapacity, seg.TotalVehiclesInSegment);
+            }*/
+
+
+
+
+
+            /* foreach (Vehicle veh in vehicles)
+            {
+                Console.WriteLine("Vehicle segmentid is {0}, junc is {1}, rte is {2}", veh.SegmentIsInId, veh.JunctionExitId, veh.ReadyToExitFromSegment);
+            }
+
+
+                      foreach (Segment seg in segments)
+                        {
+                            Console.WriteLine(seg.get_no_of_vehciles());
+                        }*/
+
+
+
+
+            /*            foreach (Segment seg in segments)
+                        {
+                            Console.WriteLine(seg.get_no_of_vehciles());
+                        }*/
+            /*            foreach (Vehicle veh in vehicles)
+                        {
+                            Console.WriteLine("Vehicle segmentid is {0}, junc is {1}, rte is {2}", veh.SegmentIsInId, veh.JunctionExitId, veh.ReadyToExitFromSegment);
+                        }*/
+
+
+
+            /*   Console.WriteLine("Seg id is: {0}", seg.SegmentId);
+               Console.WriteLine("Seg prev is: {0}", seg.NextSegment);
+               Console.WriteLine("Seg next is: {0}", seg.PrevSegment);
+               Console.WriteLine("Seg N is: {0}", seg.N);*/
         }
+
+
     }
-}
+    }
+
