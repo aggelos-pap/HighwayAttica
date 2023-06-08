@@ -18,9 +18,11 @@ namespace HighwayAttica
             int K = int.Parse(args[2]);
             int Percent = int.Parse(args[3]);
 
-
+            //Highway initialization
             Highway attica = new Highway(Nsegs);
 
+
+            //Segments, Junctions and vehicles initial creation randomly
             List<Segment> segments = new List<Segment>();
 
             for (int i = 0; i < Nsegs; i++)
@@ -58,6 +60,18 @@ namespace HighwayAttica
                     
                 }
             }
+
+            // Adding amount of vehicles in highway. Probably hacky but
+            int numberOfVehiclesInHighway = 0;
+            foreach (Segment seg in segments){
+                numberOfVehiclesInHighway += seg.get_no_of_vehicles();
+                
+            }
+            attica.TotalVehiclesInHighway = numberOfVehiclesInHighway;
+            
+
+
+
 
 
 

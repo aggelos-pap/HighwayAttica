@@ -71,7 +71,7 @@ namespace HighwayAttica
         /// <summary>
         ///Returns number of vehicles in segment
         /// </summary>
-        public int get_no_of_vehciles()
+        public int get_no_of_vehicles()
         {
             return TotalVehiclesInSegment;
         }
