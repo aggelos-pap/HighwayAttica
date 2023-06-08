@@ -28,12 +28,29 @@ namespace HighwayAttica
                 segments.Add(seg);
             }
 
+            List<Vehicle> vehicles = new List<Vehicle>();
             foreach (Segment seg in segments)
             {
-                Console.WriteLine("Seg id is: {0}", seg.SegmentId);
+                Random addVeh = new Random();
+                int numberOfVehicles = 0;
+                while (seg.SegmentCapacity >= numberOfVehicles)
+                {
+                    Vehicle veh = new Vehicle(seg.SegmentId, -1, false);
+                    vehicles.Add(veh);
+
+                    numberOfVehicles++;
+                }
+
+            foreach (Vehicle veh in vehicles)
+                {
+                    Console.WriteLine("Vehicle segmentid is {0} , junc is {1}, rte is {2}", veh.SegmentIsInId, veh.JunctionExitId, veh.ReadyToExitFromSegment);
+                    break;
+                }
+                    
+             /*   Console.WriteLine("Seg id is: {0}", seg.SegmentId);
                 Console.WriteLine("Seg prev is: {0}", seg.NextSegment);
                 Console.WriteLine("Seg next is: {0}", seg.PrevSegment);
-                Console.WriteLine("Seg N is: {0}", seg.N);
+                Console.WriteLine("Seg N is: {0}", seg.N);*/
             }
 
             Console.ReadLine();

@@ -36,17 +36,18 @@ namespace HighwayAttica
             }
         }
 
-        /// <summary>
-        /// Populate the segment with vehicles randomly
-        /// </summary>
-        public void PopulateSegmentInitial()
-        {
 
+        /// <summary>
+        ///Segment entrance
+        /// </summary>
+        public void segmentEntrance()
+        {
         }
 
+
+
         /// <summary>
-        ///Enter vehicles in segment when possible <summary>
-        /// Enter vehicles in segment when possible
+        ///Enter vehicles in segment when possible
         /// </summary>
         public void enter() 
         { 
