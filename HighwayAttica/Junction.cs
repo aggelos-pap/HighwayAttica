@@ -9,6 +9,7 @@ namespace HighwayAttica
 {
     internal class Junction
     {
+        public int VehiclesWaitingForEntry { get; set; }
         public int JunctionId { get; set; }
         public int ElectronicTolls { get; set; }
         int K;
@@ -28,9 +29,22 @@ namespace HighwayAttica
             //Cars = new List<Car>();
         }
 
+
+        /// <summary>
+        /// Generates vehicles waiting for entry and returns it
+        /// </summary>
+        /// <returns></returns>
+         
+        internal int GenerateVehiclesWaitingForEntry(int seed)
+        {
+            Random fun = new Random(seed);
+            int returnCars = fun.Next(1, 10);
+            return returnCars;
+        }
+
         ///Remove vehicles from entrance by removing vehicles from
         ///tolls. Add random cars on tolls
-        
+
         internal void operate()
         {
 

@@ -18,23 +18,23 @@ namespace HighwayAttica
             int K = int.Parse(args[2]);
             int Percent = int.Parse(args[3]);
 
-            //Highway initialization
-            Highway attica = new Highway(Nsegs);
+
 
 
             //Segments, Junctions and vehicles initial creation randomly
             List<Segment> segments = new List<Segment>();
+            List<Vehicle> vehicles = new List<Vehicle>();
+            List<Junction> junctions = new List<Junction>();
 
             for (int i = 0; i < Nsegs; i++)
             {
                 Console.WriteLine("Enter segment capacity:");
                 int cap = int.Parse(Console.ReadLine());
-                Segment seg = new Segment(i, cap, 0, Nsegs);
+                Segment seg = new Segment(i, cap, 0, Nsegs, vehicles, segments);
                 segments.Add(seg);
             }
 
-            List<Vehicle> vehicles = new List<Vehicle>();
-            List<Junction> junctions = new List<Junction>();
+
 
             Random elRan = new Random();
             Random phRan = new Random();
@@ -42,8 +42,9 @@ namespace HighwayAttica
 
             foreach (Segment seg in segments)
             {
-
+                int seed = (int)DateTime.Now.Ticks; // Needed for random generation
                 Junction jun = new Junction(seg.SegmentId+1, elRan.Next(1,4), phRan.Next(1,4), K );
+                jun.VehiclesWaitingForEntry = jun.GenerateVehiclesWaitingForEntry(seed);
                 junctions.Add(jun);
 
 
@@ -61,19 +62,31 @@ namespace HighwayAttica
                 }
             }
 
-            // Adding amount of vehicles in highway. Probably hacky but
-            int numberOfVehiclesInHighway = 0;
-            foreach (Segment seg in segments){
-                numberOfVehiclesInHighway += seg.get_no_of_vehicles();
-                
-            }
-            attica.TotalVehiclesInHighway = numberOfVehiclesInHighway;
             
 
 
 
+            //Highway initialization
+            Highway attica = new Highway(Nsegs, segments);
+
+            // Adding amount of vehicles in highway. Probably hacky but
+            int numberOfVehiclesInHighway = 0;
+            foreach (Segment seg in segments)
+            {
+                numberOfVehiclesInHighway += seg.get_no_of_vehicles();
+
+            }
+            attica.TotalVehiclesInHighway = numberOfVehiclesInHighway;
 
 
+
+            //Not for now
+            //attica.operate();
+
+
+
+         
+            
 
 
 
@@ -88,6 +101,22 @@ namespace HighwayAttica
 
             ///                  Logs beyond             ///
             ///                  
+
+
+          /*  foreach (Junction jun in junctions)
+            {
+                Console.WriteLine("Junction id: {0}, Electronic tolls: {1}, Physical tolls: {2}, junc capacity {3}", jun.JunctionId, jun.ElectronicTolls, jun.PhysicalTolls, jun.JunctionCap);
+            }
+
+            foreach (Vehicle veh in vehicles)
+            {
+                Console.WriteLine("Vehicle segmentid is {0}, junc is {1}, rte is {2}", veh.SegmentIsInId, veh.JunctionExitId, veh.ReadyToExitFromSegment);
+            }
+
+            foreach (Segment seg in segments)
+            {
+                Console.WriteLine("Segment id: {0}, Capacity: {1}, Total Vehicles: {2}", seg.SegmentId, seg.SegmentCapacity, seg.TotalVehiclesInSegment);
+            }*/
 
 
             /*            foreach (Junction jun in junctions)

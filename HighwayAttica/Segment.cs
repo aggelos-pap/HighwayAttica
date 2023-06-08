@@ -8,18 +8,24 @@ namespace HighwayAttica
 {
     internal class Segment
     {
+        
         public int TotalVehiclesInSegment { get; set; }
         public int SegmentCapacity { get; set; }
         public bool NextSegment { get; set; }
         public bool PrevSegment { get; set; }
         public int SegmentId { get; set; }
         public int N { get; set; }
-        public Segment(int segmentId, int segmentCapacity, int totalVehiclesInSegment, int n) 
+        public List<Vehicle> Vehicles { get; set; }
+        public List<Segment> Segments { get; set; }
+        public Segment(int segmentId, int segmentCapacity, int totalVehiclesInSegment, int n, List<Vehicle> vehicles, List<Segment> segments) 
         {
+            
             this.N = n;
             this.SegmentId = segmentId;
             this.SegmentCapacity = segmentCapacity;
             this.TotalVehiclesInSegment = totalVehiclesInSegment;
+            Vehicles = vehicles;
+            Segments = segments;
             if (this.SegmentId == 0) 
             { PrevSegment = false;
                 NextSegment = true;
@@ -42,7 +48,15 @@ namespace HighwayAttica
         /// </summary>
         public void segmentEntrance()
         {
+            foreach (Segment seg in Segments)
+            {
+                Console.WriteLine("Segment id: {0}, Capacity: {1}, Total Vehicles: {2}", seg.SegmentId, seg.SegmentCapacity, seg.TotalVehiclesInSegment);
+            }
+            
         }
+
+
+
 
 
 
