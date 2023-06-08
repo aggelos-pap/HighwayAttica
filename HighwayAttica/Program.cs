@@ -83,10 +83,45 @@ namespace HighwayAttica
             //Not for now
             //attica.operate();
 
+            /// <summary>
+            /// Main loop
+            /// </summary>
+            /// 
+
+            Console.WriteLine(vehicles.Count);
+            Console.WriteLine("Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+            for (int j =0; j< N; j++) { 
+            //Changes cars ready state Randomly according to Percent Variable
+
+            // Determine the number of vehicles to set ReadyToExitFromSegment to true
+            int numVehiclesToSet = (int)(vehicles.Count * (Percent / 100.0));
+
+            // Shuffle the vehicles list randomly
+            Random random2 = new Random();
+            vehicles = vehicles.OrderBy(v => random2.Next()).ToList();
+
+            // Set ReadyToExitFromSegment to true for the selected percentage of vehicles
+            for (int i = 0; i < numVehiclesToSet; i++)
+            {
+                vehicles[i].ReadyToExitFromSegment = true;
+                    
+            }
+
+            foreach (Segment seg in segments)
+                {
+                    seg.exit();
+                }
+
+            }
+            //Till here
 
 
-         
-            
+            Console.WriteLine(vehicles.Count);
+
+
+
+
+
 
 
 
