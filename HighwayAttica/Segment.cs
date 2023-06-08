@@ -17,7 +17,7 @@ namespace HighwayAttica
         public int N { get; set; }
         public List<Vehicle> vehicles { get; set; }
         public List<Segment> segments { get; set; }
-        List<Junction> junctions { get; set; }
+        public List<Junction> junctions { get; set; }
         public Segment(int segmentId, int segmentCapacity, int totalVehiclesInSegment, int n, List<Vehicle> Vehicles, List<Segment> Segments, List<Junction> Junctions) 
         {
             
@@ -142,7 +142,7 @@ namespace HighwayAttica
         /// </summary>
         public int get_no_of_vehicles()
         {
-            return TotalVehiclesInSegment;
+            return vehicles.Count;
         }
 
         /// <summary>

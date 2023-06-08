@@ -88,13 +88,7 @@ namespace HighwayAttica
                 vehicles[i].ReadyToExitFromSegment = true;
             }
 
-            foreach (Segment seg in segments)
-            {
-                /*                seg.exit(vehicles);
-                                seg.pass(vehicles);*/
-                seg.enter(vehicles);
-                break;
-            }
+            attica.operate();
 
             // Print the count of vehicles after the changes
             Console.WriteLine(vehicles.Count);
