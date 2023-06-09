@@ -54,10 +54,19 @@ namespace HighwayAttica
             int vehiclesToLeave = Math.Min(VehiclesWaitingForEntry, PhysicalTolls);
             VehiclesWaitingForEntry -= vehiclesToLeave;
 
-            // Add random vehicles to entrance tolls
+            // Generate a random number of new vehicles
             int seed = (int)DateTime.Now.Ticks;
-            VehiclesWaitingForEntry += GenerateVehiclesWaitingForEntry(seed);
+            int newVehicles = GenerateVehiclesWaitingForEntry(seed);
 
+            // Check if adding new vehicles will exceed the junction capacity
+            if (VehiclesWaitingForEntry + newVehicles > JunctionCap)
+            {
+                // If it exceeds, adjust the number of new vehicles to the remaining capacity
+                newVehicles = JunctionCap - VehiclesWaitingForEntry;
+            }
+
+            // Add new vehicles to the waiting list
+            VehiclesWaitingForEntry += newVehicles;
         }
     }
 }
