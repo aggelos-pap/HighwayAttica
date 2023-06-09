@@ -71,8 +71,8 @@ namespace HighwayAttica
             }
             attica.TotalVehiclesInHighway = numberOfVehiclesInHighway;
 
-            Console.WriteLine(vehicles.Count);
-            Console.WriteLine("Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
+           // Console.WriteLine(vehicles.Count);
+            //Console.WriteLine("Hmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm");
 
             // Changes cars ready state randomly according to Percent Variable
             // Determine the number of vehicles to set ReadyToExitFromSegment to true
@@ -87,11 +87,13 @@ namespace HighwayAttica
             {
                 vehicles[i].ReadyToExitFromSegment = true;
             }
-
-            attica.operate();
+            for (int m = 0; m < N; m++)
+            {
+                attica.operate();
+            }
 
             // Print the count of vehicles after the changes
-            Console.WriteLine(vehicles.Count);
+            //Console.WriteLine(vehicles.Count);
             //@@@@@@@@@@@@@@@@@@@@@ Logging
             /*            foreach (Vehicle veh in vehicles)
                         {

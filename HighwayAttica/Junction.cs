@@ -47,8 +47,16 @@ namespace HighwayAttica
         ///Remove vehicles from entrance by removing vehicles from
         ///tolls. Add random cars on tolls
 
+        //Not working
         internal void operate()
         {
+            // Remove vehicles from entrance tolls
+            int vehiclesToLeave = Math.Min(VehiclesWaitingForEntry, PhysicalTolls);
+            VehiclesWaitingForEntry -= vehiclesToLeave;
+
+            // Add random vehicles to entrance tolls
+            int seed = (int)DateTime.Now.Ticks;
+            VehiclesWaitingForEntry += GenerateVehiclesWaitingForEntry(seed);
 
         }
     }

@@ -40,35 +40,33 @@ namespace HighwayAttica
         //Not working
         public void operate() 
         {
-            int v1 = 0;
-            int v2 = 0;
-            int v3 = 0;
+
             foreach (Segment seg in segments)
             {
-                
+                Console.WriteLine(seg.SegmentId);
                 seg.exit(vehicles);
-                foreach (Segment seg2 in segments)
+/*                foreach (Segment seg2 in segments)
                 {
                     v1 += seg2.get_no_of_vehicles();
                     break;
                     
-                }
-                Console.WriteLine("Number of vehicles is {0}:", v1);
+                }*/
+/*                Console.WriteLine("Number of vehicles is {0}:", v1);*/
                     seg.pass(vehicles);
-                foreach (Segment seg2 in segments)
+/*                foreach (Segment seg2 in segments)
                 {
                     v2 += seg2.get_no_of_vehicles();
                     break;
-                }
-                Console.WriteLine("Number of vehicles is {0}:", v2);
+                }*/
+/*                Console.WriteLine("Number of vehicles is {0}:", v2);*/
                 seg.enter(vehicles);
                 
-                foreach (Segment seg2 in segments)
+/*                foreach (Segment seg2 in segments)
                 {
                     v3 += seg2.get_no_of_vehicles();
                     break;
                 }
-                Console.WriteLine("Number of vehicles is {0}:", v3);
+                Console.WriteLine("Number of vehicles is {0}:", v3);*/
             }
             
         }

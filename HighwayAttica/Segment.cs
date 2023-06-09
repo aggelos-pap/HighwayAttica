@@ -59,9 +59,6 @@ namespace HighwayAttica
 
 
 
-
-
-
         /// <summary>
         ///Enter vehicles in segment when possible
         /// </summary>
@@ -72,10 +69,18 @@ namespace HighwayAttica
                 int createVeh = jun.VehiclesWaitingForEntry;
                 for (int i = 0; i < createVeh; i++)
                 {
+                    // Check if the segment's capacity is reached
+                    if (this.TotalVehiclesInSegment >= this.SegmentCapacity)
+                    {
+                        Console.WriteLine("Segment {0} is at full capacity. Cannot add more vehicles.", this.SegmentId);
+                        return; // Exit the function if the segment is at full capacity
+                    }
+
                     var lastVehId = vehicles.Last().Id;
                     var lastJuncId = jun.JunctionId - 1;
                     Vehicle veh = new Vehicle(lastVehId + 1, lastJuncId, lastJuncId + 1, false);
                     vehicles.Add(veh);
+                    this.TotalVehiclesInSegment++; // Increase the count of total vehicles in segment
                 }
             }
         }
